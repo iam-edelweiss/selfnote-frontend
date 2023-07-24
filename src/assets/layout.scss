@@ -1,0 +1,44 @@
+
+
+$layout-header-bg: transparent;
+$layout-header-bg-breakpoint: #fff;
+$layout-header-height: $header-height;
+
+.layout-header {
+    background-color: $layout-header-bg;
+    height: $layout-header-height;
+    line-height: unset;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;
+    justify-content: space-between;
+    
+    @media screen and (max-width: $breakpoint) {
+        background-color: $layout-header-bg-breakpoint;
+        padding: 0 20px;
+    }
+}
+
+.layout-content {
+    width: 100%;
+    overflow-y: auto;
+    padding-inline: 30px;
+    padding-top: 15px;
+
+    @media screen and (max-width: $breakpoint) {
+        padding-inline: 20px;
+        padding-top: 20px;
+    }
+}
+
+.hidden-on-breakpoint {
+    @media screen and (max-width: $breakpoint) {
+        display: none;
+    }
+}
+
+@media screen and (min-width: $breakpoint) {
+    .breakpoint-only {
+        display: none;
+    }
+}

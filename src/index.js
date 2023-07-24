@@ -1,14 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux'
+import { store } from 'store/store';
+import { ConfigProvider } from 'antd';
+import { HelmetProvider } from 'react-helmet-async';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  // <React.StrictMode>
+  <HelmetProvider>
+    <Provider store={store}>
+      <ConfigProvider theme={{ token: { colorPrimary: '#14a26b', fontFamily: 'DM Sans' }}}>
+      {/* <ConfigProvider theme={{ token: { colorPrimary: '#00b96b', fontFamily: 'DM Sans' }}}> */}
+          <App />
+      </ConfigProvider>
+    </Provider>
+  </HelmetProvider>
+  // </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

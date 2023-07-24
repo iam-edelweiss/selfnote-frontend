@@ -1,0 +1,86 @@
+
+$sidemenu-bg: #fff !important;
+$sidemenu-width: 220px;
+$sidemenu-width-collapsed: 70px;
+
+$sidemenu-header-bg: #fff;
+$sidemenu-header-height: $header-height;
+$sidemenu-margin-inline: 4px;
+
+$sidemenu-menu-active-color: #e1faeb;
+$sidemenu-menu-active-fontweight: 500;
+$sidemenu-menu-padding-left: 20px;
+
+.sidemenu {
+
+    background-color: $sidemenu-bg;
+    display: flex;
+    flex-direction: column;
+
+    .sidemenu-header {
+        background-color: $sidemenu-header-bg;
+        height: $sidemenu-header-height;
+        text-align: center;
+
+        img {
+            height: 50px;
+        }
+    }
+
+    ul.ant-menu {
+        background-color: $sidemenu-bg;
+        height: calc(100% - #{$sidemenu-header-height});
+        overflow-y: auto;
+    }
+
+    ul.ant-menu-root {
+
+        li.ant-menu-item {
+            margin-inline: $sidemenu-margin-inline;
+            width: calc(100% - 2*#{$sidemenu-margin-inline}) !important;
+            padding-left: $sidemenu-menu-padding-left !important;
+
+            &.ant-menu-item-selected {
+                background-color: $sidemenu-menu-active-color;
+                font-weight: $sidemenu-menu-active-fontweight;
+                // background-color: #e1faeb;
+            }
+        }    
+
+        li.ant-menu-submenu {
+
+            .ant-menu-submenu-title {
+                padding-left: $sidemenu-menu-padding-left !important;
+                margin-inline: $sidemenu-margin-inline;
+                width: calc(100% - 2*#{$sidemenu-margin-inline}) !important;
+            }
+
+            ul {
+                li {
+                    padding-left: calc(#{$sidemenu-menu-padding-left} + 24px) !important;
+                }
+            }
+        }
+
+    }
+
+    #toggle-expand {
+        position: fixed;
+        font-size: 12px;
+        font-weight: 300;
+        z-index: 1;
+        top: calc( #{$sidemenu-header-height} / 2);
+        left: $sidemenu-width;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
+
+    // SIDE COLLAPSED
+    &.ant-layout-sider-collapsed {
+
+        #toggle-expand {
+            left: calc( #{$sidemenu-width-collapsed} + 40px );
+        }
+    }
+    
+}
