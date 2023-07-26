@@ -21,8 +21,10 @@ const Dashboard = () => {
 
     useEffect(() => {
         if (isSuccessStatNote && actionNote === 'get-statistic') {
-            setCountText(dataNote.filter(v => v.type === 'text')[0].count)
-            setCountTable(dataNote.filter(v => v.type === 'table')[0].count)
+            if (dataNote.length) {
+                setCountText(dataNote.filter(v => v.type === 'text')[0].count)
+                setCountTable(dataNote.filter(v => v.type === 'table')[0].count)
+            }
         }
         
         if (isSuccessCategory&& actionCategory === 'get-categories') {
