@@ -106,55 +106,58 @@ const TextList = () => {
                         />
                     </Space>
 
-                    <Table
-                        loading={ (isLoading && action === 'get-textnotes') || (isLoadingCategory && categoryAction === 'get-categories') }
-                        pagination={false}
-                        columns={[
-                            { title: '#', dataIndex: '#', className: '' },
-                            { title: 'TITLE', dataIndex: 'title',},
-                            { title: 'CATEGORY', dataIndex: 'category',render: (_, {category}) => category ? category.name : '-' },
-                            { title: 'CREATED AT', dataIndex: 'created_at', 
-                              render: (_, {created_at}) => (
-                                <span>{moment(created_at) //automatic timezone
-                                .format('dddd, D MMMM YYYY HH:mm')}</span>
-                              )
-                            },
-                            { 
-                                title: 'ACTION', dataIndex: 'action', 
-                                render: (_, textnote) => {
-                                    return (
-                                    <Space>
-                                        <Dropdown trigger={'click'}
-                                            menu={{
-                                                style: { width: '120px'},
-                                                items: [
-                                                    { key: `upd${textnote._id}`, label: <span className='font-12'>Edit</span>, 
-                                                      onClick: (e) => {
-                                                        setTargetUpdate(textnote)
-                                                        setOpenUpdateDrawer(true)
-                                                      } 
-                                                    },
-                                                    { key: `del${textnote._id}`, label: <span className='font-12'>Delete</span>, danger: true,
-                                                      onClick: () => {
-                                                        if(window.confirm(`Are you sure to delete this textnote "${textnote.title}" ?`)) {
-                                                            dispatch(deleteTextNote(textnote._id))
+                    <div style={{width: '100%', overflowX: 'auto'}}>
+
+                        <Table
+                            loading={ (isLoading && action === 'get-textnotes') || (isLoadingCategory && categoryAction === 'get-categories') }
+                            pagination={false}
+                            columns={[
+                                { title: '#', dataIndex: '#', className: '' },
+                                { title: 'TITLE', dataIndex: 'title',},
+                                { title: 'CATEGORY', dataIndex: 'category',render: (_, {category}) => category ? category.name : '-' },
+                                { title: 'CREATED AT', dataIndex: 'created_at', 
+                                render: (_, {created_at}) => (
+                                    <span>{moment(created_at) //automatic timezone
+                                    .format('dddd, D MMMM YYYY HH:mm')}</span>
+                                )
+                                },
+                                { 
+                                    title: 'ACTION', dataIndex: 'action', 
+                                    render: (_, textnote) => {
+                                        return (
+                                        <Space>
+                                            <Dropdown trigger={'click'}
+                                                menu={{
+                                                    style: { width: '120px'},
+                                                    items: [
+                                                        { key: `upd${textnote._id}`, label: <span className='font-12'>Edit</span>, 
+                                                        onClick: (e) => {
+                                                            setTargetUpdate(textnote)
+                                                            setOpenUpdateDrawer(true)
+                                                        } 
+                                                        },
+                                                        { key: `del${textnote._id}`, label: <span className='font-12'>Delete</span>, danger: true,
+                                                        onClick: () => {
+                                                            if(window.confirm(`Are you sure to delete this textnote "${textnote.title}" ?`)) {
+                                                                dispatch(deleteTextNote(textnote._id))
+                                                            }
                                                         }
-                                                      }
-                                                    }
-                                                ]
-                                            }}
-                                        >
-                                            <a className='fw-bold' onClick={(e) => e.preventDefault()}>Actions <DownOutlined /></a>
-                                        </Dropdown>
-                                    </Space>
-                                    )
-                                }
-                            },
-                        ]}
-                        dataSource={textNotes}
-                    >
-                        
-                    </Table>
+                                                        }
+                                                    ]
+                                                }}
+                                            >
+                                                <a className='fw-bold' onClick={(e) => e.preventDefault()}>Actions <DownOutlined /></a>
+                                            </Dropdown>
+                                        </Space>
+                                        )
+                                    }
+                                },
+                            ]}
+                            dataSource={textNotes}
+                        >
+                            
+                        </Table>
+                    </div>
                 </div>
             </div>
 

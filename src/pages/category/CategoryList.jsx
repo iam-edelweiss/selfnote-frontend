@@ -60,6 +60,7 @@ const CategoryList = () => {
                     )}
 
                     {/* <Card> */}
+                    <div style={{width: '100%', overflowX: 'auto'}}>
                         <Table 
                             loading={isLoading && action === 'get-categories'}
                             pagination={false}
@@ -100,6 +101,7 @@ const CategoryList = () => {
                             ]}
                             dataSource={categories}
                         />
+                    </div>
                     {/* </Card> */}
                 </div>
             </div>

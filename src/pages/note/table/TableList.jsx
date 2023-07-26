@@ -106,50 +106,53 @@ const TableList = () => {
                         />
                     </Space>
 
-                    <Table
-                        loading={ (isLoading && action === 'get-tables') || (isLoadingCategory && categoryAction === 'get-categories') }
-                        pagination={false}
-                        columns={[
-                            { title: '#', dataIndex: '#', className: '' },
-                            { title: 'TITLE', dataIndex: 'title',},
-                            { title: 'CATEGORY', dataIndex: 'category',render: (_, {category}) => category ? category.name : '-' },
-                            { title: 'CREATED AT', dataIndex: 'created_at', 
-                              render: (_, {created_at}) => (
-                                <span>{moment(created_at) //automatic timezone
-                                .format('dddd, D MMMM YYYY HH:mm')}</span>
-                              )
-                            },
-                            { 
-                                title: 'ACTION', dataIndex: 'action', 
-                                render: (_, table) => {
-                                    return (
-                                    <Space>
-                                        <Dropdown trigger={'click'}
-                                            menu={{
-                                                style: { width: '120px'},
-                                                items: [
-                                                    { key: `det${table._id}`, label: <Link to={`/notes/table/${table._id}`} className='font-12'>Detail</Link>, },
-                                                    { key: `del${table._id}`, label: <span className='font-12'>Delete</span>, danger: true,
-                                                      onClick: () => {
-                                                        if(window.confirm(`Are you sure to delete category "${table.title}" ?`)) {
-                                                            dispatch(deleteTableNote(table._id))
+
+                    <div style={{width: '100%', overflowX: 'auto'}}>
+                        <Table
+                            loading={ (isLoading && action === 'get-tables') || (isLoadingCategory && categoryAction === 'get-categories') }
+                            pagination={false}
+                            columns={[
+                                { title: '#', dataIndex: '#', className: '' },
+                                { title: 'TITLE', dataIndex: 'title',},
+                                { title: 'CATEGORY', dataIndex: 'category', render: (_, {category}) => category ? category.name : '-' },
+                                { title: 'CREATED AT', dataIndex: 'created_at', 
+                                render: (_, {created_at}) => (
+                                    <span>{moment(created_at) //automatic timezone
+                                    .format('dddd, D MMMM YYYY HH:mm')}</span>
+                                )
+                                },
+                                { 
+                                    title: 'ACTION', dataIndex: 'action', 
+                                    render: (_, table) => {
+                                        return (
+                                        <Space>
+                                            <Dropdown trigger={'click'}
+                                                menu={{
+                                                    style: { width: '120px'},
+                                                    items: [
+                                                        { key: `det${table._id}`, label: <Link to={`/notes/table/${table._id}`} className='font-12'>Detail</Link>, },
+                                                        { key: `del${table._id}`, label: <span className='font-12'>Delete</span>, danger: true,
+                                                        onClick: () => {
+                                                            if(window.confirm(`Are you sure to delete category "${table.title}" ?`)) {
+                                                                dispatch(deleteTableNote(table._id))
+                                                            }
                                                         }
-                                                      }
-                                                    }
-                                                ]
-                                            }}
-                                        >
-                                            <a className='fw-bold' onClick={(e) => e.preventDefault()}>Actions <DownOutlined /></a>
-                                        </Dropdown>
-                                    </Space>
-                                    )
-                                }
-                            },
-                        ]}
-                        dataSource={tables}
-                    >
-                        
-                    </Table>
+                                                        }
+                                                    ]
+                                                }}
+                                            >
+                                                <a className='fw-bold' onClick={(e) => e.preventDefault()}>Actions <DownOutlined /></a>
+                                            </Dropdown>
+                                        </Space>
+                                        )
+                                    }
+                                },
+                            ]}
+                            dataSource={tables}
+                        >
+                            
+                        </Table>
+                    </div>
                 </div>
             </div>
 

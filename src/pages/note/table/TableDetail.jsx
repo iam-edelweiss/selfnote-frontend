@@ -143,17 +143,19 @@ const TableDetail = () => {
 
             <div className="row mb-3">
                 <div className="col-12">
-                    <Table 
-                        loading={ (isLoading && action === 'get-table') }
-                        pagination={false}
-                        columns={columns}
-                        dataSource={tables}
-                        locale={{
-                            emptyText: <Empty extraComp={
-                                            <Button type='primary' className='font-12 px-3 mb-3' onClick={() => setOpenInsertDataTable(true)}>Add New Data</Button>
-                                        } />
-                        }}
-                    />
+                    <div style={{width: '100%', overflowX: 'auto'}}>
+                        <Table 
+                            loading={ (isLoading && action === 'get-table') }
+                            pagination={false}
+                            columns={columns}
+                            dataSource={tables}
+                            locale={{
+                                emptyText: <Empty extraComp={
+                                                <Button type='primary' className='font-12 px-3 mb-3' onClick={() => setOpenInsertDataTable(true)}>Add New Data</Button>
+                                            } />
+                            }}
+                        />
+                    </div>
                 </div>
             </div>
 

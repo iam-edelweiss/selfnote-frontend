@@ -1,4 +1,5 @@
-export const BASEURL =  `${process.env.REACT_APP_BACKENDURL ?? "https://dark-pear-pigeon-cuff.cyclic.app/api"}`
+// export const BASEURL =  `${process.env.REACT_APP_BACKENDURL ?? "https://dark-pear-pigeon-cuff.cyclic.app/api"}`
+export const BASEURL = process.env.REACT_APP_ENV === 'development' ? process.env.REACT_APP_BACKENDURL_DEVELOPMENT : process.env.REACT_APP_BACKENDURL_PRODUCTION
 
 // AUTHENTICATION
 export const LOGIN = `/login`

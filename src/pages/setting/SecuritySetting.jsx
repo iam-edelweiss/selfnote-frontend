@@ -45,7 +45,7 @@ const SecuritySetting = () => {
         confirm({
             title: 'Remove all sessions ?',
             content: ( <span className='font-12'> You'll logged out from this session </span> ),
-            onOk(close) {
+            onOk() {
                 dispatch(logoutAll())
             },
             onCancel() { },
